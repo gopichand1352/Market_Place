@@ -1,0 +1,51 @@
+{% extends 'homepage_design/base.html' %}
+{% block title %}
+Product Details Page
+{% endblock title %}
+{% block content %}
+<div class='container' style="width:100%;border-radius:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;padding:10px;margin-top:25px;">
+    <h1>Your Addresses</h1>
+    <div class=row>
+        {% for add in addr %}
+        <div class="col-sm-9 col-md-5 col-lg-5" style="border-radius:5px;box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;margin-left: 25px;">
+            <div style="display: flex; flex-direction:row;">
+                <h3>Address : {{forloop.counter}}</h3>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="position: relative;top: 5px;left: 230px;">
+                    Delete
+                  </button>
+                  
+                  <!-- Modal -->
+                  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">Delete Address</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Are ayou sure if yoy want to delete this address if yes press continue button otherwise press cancel button.
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancel</button>
+                          <a href="{% url 'deleteaddress' add.id %}" class="btn btn-danger" id="cancel_order">Continue</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- Button trigger model-->
+            </div>
+            <pre>
+    Name    : {{add.customer_name}}
+    Phone   : {{add.phoneNumber}}
+    locality: {{add.customer_locality}}
+    City    : {{add.customer_city}}
+    Zipcode : {{add.customer_zipcode}}
+    State   : {{add.customer_state}}
+    Country : {{add.customer_country}}
+            </pre>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,65 @@
+{% extends 'homepage_design/base.html' %}
+{% block title %}
+Cart Page 
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-col-sm-12 col-md-10 col-lg-5">
+            <h1 style="font-size:20px; margin-top:15px;">Order Summary</h1><hr>
+            {% for items in products %}
+                
+            <div style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;border-radius:10px;margin:5px;padding:5px;box-sizing:border-box;">
+                <img src="{{items.product.image1.url}}" alt="" style="width:50px;height:50px;">
+                <h5>Product : {{items.product.pname}}</h5>
+                <p>Quantity : {{items.quantity}}</p>
+                <strong><p>Price : {{items.product.discount_price}}</p></strong>
+            </div>
+            {% endfor %}
+            <strong>Total Cost =Amount({{amount}}) + Rs. {{shipping_amount}} ={{total_amount}}</strong>
+        </div>
+        <div class="col-col-sm-12 col-md-10 col-lg-5">
+            <h1 style="font-size:20px; margin-top:15px;">Select Shipping Address</h1><hr>
+            <form action="{% url 'payment_done' %}" method="post">
+                {% csrf_token %}
+                {% for add in add %}
+                <div class="card" style="margin:10px;">
+                    <div class="card-body">
+                        <h5>{{add.customer_name}}</h5>
+                        <p>{{add.phoneNumber}},{{add.customer_locality}},{{add.customer_city}},{{add.customer_zipcode}},{{add.customer_state}},{{add.customer_country}}</p>
+                    </div>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="custid" id="custadd{{forloop.counter}}" value="{{add.id}}" required>
+                    <label class="form-check-label" for="custadd{{forloop.counter}}">Address {{forloop.counter}}</label>
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-warning" style="float:right;">Continue</button>
+            </form>
+
+            <!-- rayzorpay button -->
+            {% if payment %}
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" custom="Hidden Element" name="hidden"/>
+                <script
+                    src="https://checkout.razorpay.com/v1/checkout.js"
+                    data-key="rzp_test_RP2M8nHYEP9X7b" 
+                    data-amount="{{payment.amount}}" 
+                    data-currency="{{payment.currency}}"
+                    data-order_id="{{payment.id}}"
+                    data-buttontext="Pay with Razorpay"
+                    data-name="Market Place"
+                    data-description="Discover the freshest, all-natural groceries at Marketplace – your go-to destination for a healthier,tastier life."
+                    data-image="https://example.com/your_logo.jpg"
+                    data-prefill.name="{{payment.name}}"
+                    data-prefill.email="gopichand9642499826@gmail.com"
+                    data-theme.color="#38d39f"
+                ></script>
+            </form>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

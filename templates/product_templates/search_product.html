@@ -1,0 +1,57 @@
+{% extends 'product_templates/base.html' %}
+{% block title %}
+Milk Items Page 
+{% endblock title %}
+{% block product1 %}
+{% if plength4 < 1 %}
+        <h4 style="margin:auto;text-align:center;position: relative;top:50px;">No Products Avalible</h4>
+{% elif not plength4 < 1 %}
+    {% if not flen < 1 %}
+    <div class = "products">
+        <div class = "container">
+            <h1 class = "lg-title">Special {{fruits.pname}} With Offers</h1>
+            <div class = "product-items">
+                {% for j in fruits %}
+                <div class = "product" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                    <div class = "product-content">
+                        <div class = "product-img" style="width: 350px;">
+                            <a href="{% url 'product_detail' j.id %}" style="margin-top:0px;"><img src = "{{j.image1.url}}" alt = "product image" style="width:370px; height:250px;margin-left:-30px;"></a>
+                        </div>
+                    </div>
+                    <div class = "product-info">
+                        <div class = "product-info-top">
+                            <h2 class = "sm-title">lifestyle</h2>
+                            <div class = "rating">
+                                <span><i class = "fas fa-star"></i></span>
+                                <span><i class = "fas fa-star"></i></span>
+                                <span><i class = "fas fa-star"></i></span>
+                                <span><i class = "fas fa-star"></i></span>
+                                <span><i class = "far fa-star"></i></span>
+                            </div>
+                        </div>
+                        <h4 class = "product-name">{{j.pname}}</h4>
+                        <p class = "product-price">Rs. {{j.selling_price}}</p>
+                        <p class = "product-price">Rs. {{j.discount_price}}</p>
+                        <div class = "product-btns">
+                            <form action="/homepage/cart" class="d-inline">
+                                <input type="hidden" name="pro_id" value={{j.id}} id='pro_id'>
+                                <button type = "submit" class = "btn bt2"> 
+                                    Add to Cart
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class = "off-info">
+                        <h2 class = "sm-title">{{j.discount_percent}}% off</h2>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% elif flen < 1 %}
+    <h4 style="margin:auto;text-align:center;position: relative;top:50px;">No Products Avalible</h4>
+    {% endif %}
+    
+{% endif %}
+{% endblock product1 %}

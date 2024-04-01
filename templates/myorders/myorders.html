@@ -1,0 +1,11 @@
+{% extends 'homepage_design/base.html' %}
+{% block title %}
+My Orders Page 
+{% endblock title %}
+{% block log %}
+<a class="dropdown-item" href="/homepage/login"><i class="fa fa-sign-out"></i> LogOut</a>
+{% endblock log %}
+
+{% block content %}
+{% include "myorders/myorders1.html" %}
+{% endblock content %}

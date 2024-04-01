@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontawesome Link for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+</head>
+<body>
+    {% if plength < 1 %}
+        <h4 style="margin:auto;text-align:center;position: relative;top:50px;">No Products Avalible</h4>
+    {% elif plength > 0 %}
+        <div style="margin-top:10px">
+            <h1>PRODUCTS</h1>
+        </div>
+        <div class="wrapper">
+            <ul class="carousel main">
+                {% for i in products %}
+                <li class="card card1" style="margin: 10px 0px 0px 5px;">
+                    <div class="img-wrapper">
+                        <a href="{% url 'product_detail' i.id %}"><img src="{{i.image1.url}}" class="img-fluid" alt="..."></a>
+                    </div>
+                    <div class="card-body">
+                        <h2 class="product-name">
+                            {{i.pname}}
+                        </h2>
+                        <div>
+                            <span class="selling-price sp">{{i.discount_price}}</span>
+                            <span class="original-price sp"><del>{{i.selling_price}}</del></span>
+                        </div>
+                        <div class="mt-2" id="b1">
+                            <ul>
+                                <li class="">
+                                    <a href="{% url 'cart' i.id %}" class="btn" style="background-color:orange;color: white;">Add to Cart <i class = "fas fa-shopping-cart"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>.
+                {% endfor %}    
+            </ul>
+        </div>    
+    {% endif %}
+</body>
+</html>

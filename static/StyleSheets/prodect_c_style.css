@@ -1,0 +1,201 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+body {
+    padding: 15px;
+    min-height: 100vh;
+}
+.wrapper {
+    margin: auto;
+    width: 100%;
+    position: relative;
+}
+.wrapper .arro {
+    z-index: 1;
+    top: 50%;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    position: absolute;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    background: #38d39f;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.23);
+    transform: translateY(-50%);
+    transition: transform 0.1s linear;
+}
+.wrapper .arro:active{
+    transform: translateY(-50%) scale(0.85);
+}
+.wrapper .arro:first-child{
+    left: -22px;
+}
+.wrapper .arro:last-child{
+    right: -22px;
+}
+.wrapper .main{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% / 5) - 12px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    border-radius: 8px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+}
+
+.img-wrapper img {
+    border-radius: 8px;
+    width: 300px;
+    object-fit: cover;
+    height: 220px;
+    object-fit: cover;
+    transition: 0.3s ease-in !important;
+}
+.img-wrapper img:hover {
+    scale: 1.2 !important;
+    transition: 0.3s ease-in !important;
+}
+
+.main::-webkit-scrollbar {
+    display: none;
+}
+.main.no-transition {
+    scroll-behavior: auto;
+}
+.main.dragging {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+}
+.main.dragging .card1 {
+    cursor: grab;
+    user-select: none;
+}
+.main :where(.card1, .img) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.main .card1 {
+    margin-left: 50px !important;
+    overflow: hidden;
+    width: 300px;
+    scroll-snap-align: start;
+    height: 400px;
+    list-style: none;
+    border: none !important;
+     background: #fff;
+    cursor: pointer;
+    padding-bottom: 15px;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    z-index: 1;
+}
+.selling-price {
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.original-price {
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.product-name {
+    margin-top: 7px;
+    margin-left: 15px;
+}
+
+#b1 ul li {
+    display: inline-block !important;
+    margin: 5px 25px 10px -15px !important;
+}
+#b1 ul li a {
+    text-decoration: none !important;
+}
+
+.main .card1 span{
+    color: #6A6D78;
+    font-size: 1.31rem;
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper .main {
+        grid-auto-columns: calc((100% / 2) - 9px);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper .main {
+        grid-auto-columns: 100%;
+    }
+}
+
+
+
+
+.bt2 {
+    margin-top: 2px !important;
+    padding: 10px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border-radius: 10px;
+    display: block;
+    border: 0px;
+    font-weight: 700;
+    box-shadow: 0px 0px 14px -7px #f09819;
+    background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.bt2:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.bt2:active {
+    transform: scale(0.95);
+}
+
+.bt3 {
+    padding: 10px !important;
+    text-align: center;
+    color: red !important;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border-radius: 10px;
+    display: block;
+    border: 0px;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    font-size: 17px !important;
+}
+.bt3:hover {
+    background-color: red !important;
+    background-position: right center;
+    color:white !important;
+    text-decoration: none;
+}
+.bt3:active {
+    transform: scale(0.7);
+} 

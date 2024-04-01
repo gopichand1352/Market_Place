@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo1.png' %}">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'StyleSheets/loginFileStyle.css' %}">
+</head>
+<body>
+    <img class="wave" src="{% static 'images/wave.png' %}">
+	<div class="container">
+		<div class="img">
+            <a href="{% url 'base' %}"> <img src="{% static 'images/bg.svg' %}"></a>
+		</div>
+		<div class="login-content">
+            <form method="post">
+                {% csrf_token %}
+                <img src="{% static 'images/avatar.svg' %}">
+				<h2 class="title">Welcome</h2>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Email</h5>
+                        <input type="email" class="input" name="email1" required>
+                    </div>
+                </div>
+                <div class="input-div pass">
+                    <div class="i"> 
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Password</h5>
+                        <input type="password" class="input" name="password1" required>
+                    </div>
+                </div>
+                <a href="#">Forgot Password?</a>
+                <a href="{% url 'register' %}">Create account?</a>
+                <input type="submit" class="btn" value="LogIn">
+                {% if messages %}
+                
+                {% for message in messages %}
+                <div class="div alert {{message.tags}} m-2" id="msg" role="alert">{{message}}</div>                    
+                {% endfor %}
+                    
+                {% endif %}
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static 'scriptFiles/common.js' %}"></script>
+</body>
+</html>
